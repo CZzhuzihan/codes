@@ -769,7 +769,7 @@ int main(){
 		z=0;
 		dfs(0,0);
 		cout<<(z==1?"YES":"NO")<<endl;
-	}
+    }
     return 0;
 }
 ```
