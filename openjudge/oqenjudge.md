@@ -773,3 +773,81 @@ int main(){
     return 0;
 }
 ```
+### [1805:碎纸机](http://noi.openjudge.cn/ch0205/1805/)
+#### 题目大意
+输入多组数据，每组数据包含两个数`x`，`y`，要求把`y`进行切割，使得切割后的数相加不大于`x`，输出有三种情况
+1. 无解，输出`error`
+2. 最大值有多组解，输出`rejected`
+3. 最大值有唯一解，输出最大值和方案。
+#### 题目思路
+枚举每一个间隔是否切割，最后计算答案。
+#### AC代码
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> a;
+int main(){
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	while(1){
+        int x,y;
+        cin>>x>>y;
+        if(x==0&&y==0) break;
+        a.clear();
+        while(y!=0){
+            a.push_back(y%10);
+            y=y/10;
+        }
+        reverse(a.begin(),a.end());
+        int l=a.size()-1;
+        int ans=-1;
+        vector<vector<int>> z;
+        for(int i=0;i<1<<l;i++){
+            int c=0;
+            vector<int> v;
+            for(int j=0;j<l;j++){
+                if(i>>j&1){
+                    int b=0;
+                    for(int k=c;k<=j;k++){
+                        b=b*10+a[k];
+                    }
+                    c=j+1;
+                    v.push_back(b);
+                }
+            }
+            int d=0;
+            for(int k=c;k<a.size();k++){
+                d=d*10+a[k];
+            }
+            v.push_back(d);
+            int s=0;
+            for(auto j:v){
+                s=s+j;
+            }
+            if(s>x) continue;
+            if(s>ans){
+                ans=s;
+                z.clear();
+                z.push_back(v);
+            }
+            else if(s==ans){
+                z.push_back(v);
+            }
+        }
+        if(z.size()==0){
+            cout<<"error";
+        }
+        else if(z.size()>1){
+            cout<<"rejected";
+        }
+        else{
+            cout<<ans;
+            for(auto i:z[0]){
+                cout<<' '<<i;
+            }
+        }
+        cout<<endl;
+	}
+    return 0;
+}
+```
