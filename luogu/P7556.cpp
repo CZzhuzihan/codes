@@ -35,8 +35,12 @@ int main(){
 						}
 						else b.erase(b.find(a[l]));
 					}
+<<<<<<< HEAD
 					if(f/*&&x+y>z*/){
 						//cout<<x<<' '<<y<<' '<<z<<endl;
+=======
+					if(f){
+>>>>>>> d4cd5bbbc98eb6c29e5a7fdcfa75b0158e62dcb1
 						s++;
 					}
 				}
@@ -46,4 +50,7 @@ int main(){
 	} 
     return 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4cd5bbbc98eb6c29e5a7fdcfa75b0158e62dcb1
